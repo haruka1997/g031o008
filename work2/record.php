@@ -1,11 +1,11 @@
 <?php
 try {
-    $dbh = new PDO('mysql:host=localhost; dbname=g031o008', 'test', 'SQsUxvXnGOhPur0J');
+    $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
     if($dbh == null){
     	print_r('接続失敗').PHP_EOL;
     }else{
 		$table_data = array();	//取得データ格納配列
-		$sql = "SELECT * FROM user;";	//userテーブルから全件データ取得するSQL文
+		$sql = "SELECT userId, userName, userPlace, visitStationNum, getTicketNum, introduce FROM user;";	//userテーブルから全件データ取得するSQL文
 
 		//データ取得
 		$stmt = $dbh->query($sql);
@@ -37,11 +37,9 @@ try {
 		echo "<th>ユーザID</th>";
 		echo "<th>ユーザ名</th>";
 		echo "<th>居住地</th>";
-		echo "<th>パスワード</th>";
 		echo "<th>訪問駅数</th>";
 		echo "<th>入手切符数</th>";
 		echo "<th>自己紹介</th>";
-		echo "<th>アイコン画像</th>";
 		echo "</tr>";
 		foreach($table_data[user] as $index => $dataArray){	//$index: 添字(0,1,2...) $dataArray: [userId: ..., userName: ....,]
 			echo "<tr>";

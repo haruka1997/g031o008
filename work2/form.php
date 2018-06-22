@@ -1,5 +1,5 @@
 <?php
-    $dbh = new PDO('mysql:host=localhost; dbname=g031o008', 'test', 'SQsUxvXnGOhPur0J');
+    $dbh = new PDO('mysql:host=153.126.145.118;dbname=g031o008', 'g031o008', 'g031o008');
     if($dbh == null){
     	print_r('接続失敗').PHP_EOL;
     }else{
@@ -23,7 +23,7 @@
 ?>
 <!DOCTYPE html>
 <head>
-    <title>ログインフォーム</title>
+    <title>ユーザ新規登録</title>
 </head>
 <body>
 <form method="post">
