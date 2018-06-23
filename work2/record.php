@@ -44,7 +44,8 @@ try {
 		foreach($table_data[user] as $index => $dataArray){	//$index: 添字(0,1,2...) $dataArray: [userId: ..., userName: ....,]
 			echo "<tr>";
 			foreach($dataArray as $dataKey => $data){	//$dataKey: userId, userNameなど　$data: 各dataKeyに値するデータ
-				echo "<td>$data</td>";
+				$dispData = htmlspecialchars($data);
+				echo "<td>$dispData</td>";
 			}
 			echo "</tr>";
 		}

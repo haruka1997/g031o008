@@ -14,8 +14,8 @@
             }
             else{
                 $stmt = $dbh -> prepare("INSERT INTO user (userId, password) VALUES (:userId, :password)");
-                $stmt->bindParam(':userId', $_POST['userId'], PDO::PARAM_STR);
-                $stmt->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
+                $stmt->bindParam(':userId', htmlspecialchars($_POST['userId']), PDO::PARAM_STR);
+                $stmt->bindParam(':password', htmlspecialchars($_POST['password']), PDO::PARAM_STR);
                 $stmt->execute();
             }
         }
