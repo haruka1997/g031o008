@@ -1,0 +1,25 @@
+.mdl-layout__header{
+    background-color: #ffffff;
+    color: rgb(66, 103, 126);
+}
+.mdl-layout-title{
+    font-weight: bold;
+}
+.mdl-layout__header .mdl-layout__drawer-button{
+    color: rgb(66, 103, 126);
+}
+.mdl-button--raised.mdl-button--colored{
+    background-color: #517D99;
+}
+.mdl-layout__content{
+    background-color: #f2f2f2;
+}
+.page-content{
+    background-color: #ffffff;
+    color: #333;
+    position: absolute;
+    width: 95%;
+    height: 100%;
+    top: 30px;
+    margin: 2%;
+}

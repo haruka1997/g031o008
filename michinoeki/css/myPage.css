@@ -1,0 +1,45 @@
+.profile{
+    display: flex;
+}
+
+.profile-image{
+    display: inline-block;
+	width: 250px;
+	height: 250px;
+    background: #ffffff;
+    border: #dddddd solid 1px;
+    top: 30px;
+    left: 40px;
+    position: relative;
+}
+
+.profile-table{
+    position: relative;
+    top: 30px;
+    left: 100px;
+}
+
+.table {
+    border-collapse: collapse;
+    width: 800px;
+    height: 500px;
+    font-size: 12px;
+    text-align: left;
+}
+.table th    {
+    color: #FFF;
+    background-color: #517D99;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid #CCC;
+    width: 100px;
+}
+.table td    {
+    padding: 10px;
+    color: #666;
+    border-bottom: 1px solid #CCC;
+}
+
+tr:nth-child(odd) {
+    background: #f2f2f2;
+}
