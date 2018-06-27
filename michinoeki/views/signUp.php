@@ -82,8 +82,8 @@
                 <?php if($compFlag){ ?>
                 <h1 class="sign-complite">登録が完了しました！</h1>
                 <form>
-                <div class="button-panel">
-                    <input type="submit" class="sign-button" title="ログイン画面へ" value="ログイン画面へ"></input>
+                <div class="form-footer">
+                    <p><a href="./login.php">ログイン画面へ</a></p>
                 </div>
                 </form>
                 <?php } ?>

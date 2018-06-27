@@ -45,7 +45,7 @@
                     </div>
                   </form>
                   <div class="form-footer">
-                    <p><a>新規登録</a></p>
+                    <p><a href="./signUp.php">新規登録</a></p>
                 </div>
           </main>
         </div>
