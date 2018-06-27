@@ -1,5 +1,5 @@
 <?php
-    $dbh = new PDO('mysql:host=153.126.145.118;dbname=g031o008', 'g031o008', 'g031o008');
+    $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
     if($dbh == null){
     	print_r('接続失敗').PHP_EOL;
     }else{
@@ -14,8 +14,8 @@
             }
             else{
                 $stmt = $dbh -> prepare("INSERT INTO user (userId, password) VALUES (:userId, :password)");
-                $stmt->bindParam(':userId', htmlspecialchars($_POST['userId']), PDO::PARAM_STR);
-                $stmt->bindParam(':password', htmlspecialchars($_POST['password']), PDO::PARAM_STR);
+                $stmt->bindParam(':userId', $_POST['userId'], PDO::PARAM_STR);
+                $stmt->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
                 $stmt->execute();
             }
         }
@@ -23,12 +23,12 @@
 ?>
 <!DOCTYPE html>
 <head>
-    <title>ユーザ新規登録</title>
+    <title>ユーザ新規登録フォーム</title>
 </head>
 <body>
 <form method="post">
-    <input type="text" name="userId" placeholder="ユーザID">
-    <input type="password" name="password" placeholder="パスワード">
+    <input type="text" name="userId" placeholder="ユーザID" pattern="^[0-9A-Za-z]+$" required>
+    <input type="password" name="password" placeholder="パスワード" pattern="^[0-9A-Za-z]+$" required>
     <input type="submit" value="登録する">
 </form>
 

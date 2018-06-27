@@ -30,26 +30,15 @@ try {
 			$index++;
 		}
 
-		//取得データ表示
-		echo "userテーブル";	//テーブル名
-		echo "<table border=1 style=border-collapse:collapse;>";
-		echo "<tr>";
-		echo "<th>ユーザID</th>";
-		echo "<th>ユーザ名</th>";
-		echo "<th>居住地</th>";
-		echo "<th>訪問駅数</th>";
-		echo "<th>入手切符数</th>";
-		echo "<th>自己紹介</th>";
-		echo "</tr>";
-		foreach($table_data[user] as $index => $dataArray){	//$index: 添字(0,1,2...) $dataArray: [userId: ..., userName: ....,]
-			echo "<tr>";
-			foreach($dataArray as $dataKey => $data){	//$dataKey: userId, userNameなど　$data: 各dataKeyに値するデータ
-				$dispData = htmlspecialchars($data);
-				echo "<td>$dispData</td>";
-			}
-			echo "</tr>";
-		}
-		echo "</table>";
+		// foreach($table_data[user] as $index => $dataArray){	//$index: 添字(0,1,2...) $dataArray: [userId: ..., userName: ....,]
+		// 	echo "<tr>";
+		// 	foreach($dataArray as $dataKey => $data){	//$dataKey: userId, userNameなど　$data: 各dataKeyに値するデータ
+		// 		$dispData = htmlspecialchars($data);
+		// 		echo "<td>$dispData</td>";
+		// 	}
+		// 	echo "</tr>";
+		// }
+		// echo "</table>";
     }
 	$dbh = null;	//終了
 } catch (PDOException $e) {	//DB接続エラー
@@ -62,7 +51,29 @@ try {
 <head>
     <title>一覧表示</title>
 </head>
+<body>
+<h1>userテーブル</h1>
+<table border=1 style=border-collapse:collapse;>
+<tr>
+    <th>ユーザID</th>
+    <th>ユーザ名</th>
+    <th>居住地</th>
+    <th>訪問駅数</th>
+    <th>入手切符数</th>
+    <th>自己紹介</th>
+</tr>
+<?php
+	foreach($table_data[user] as $index => $dataArray){	//$index: 添字(0,1,2...) $dataArray: [userId: ..., userName: ....,]
+		echo "<tr>";
+		foreach($dataArray as $dataKey => $data){	//$dataKey: userId, userNameなど　$data: 各dataKeyに値するデータ
+			$dispData = htmlspecialchars($data);	//htmlエスケープ処理
+			echo "<td>$dispData</td>";
+		}
+		echo "</tr>";
+	}
+?>
+</table>
 <form action="form.php">
     <input type="submit" value="追加画面に戻る">
 </form>
-
+</body>
