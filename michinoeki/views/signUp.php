@@ -1,5 +1,7 @@
 <?php
     $compFlag = false;  //DB情報格納フラグ
+    $errorFlag = false;
+    $errorMsg = '';
     $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
     if($dbh == null){
     	print_r('接続失敗').PHP_EOL;
@@ -7,18 +9,23 @@
         //データが入力されているかどうかチェックする
         if(array_key_exists('userId',$_POST) AND array_key_exists('userName', $_POST) AND array_key_exists('password', $_POST) AND array_key_exists('userPlace', $_POST))
         {
-            $today = new DateTime();
-            $created = $today->format('Y-m-d H:i:s');  //登録日
+            $today = new DateTime();    //今日の日付を抽出
+            $created = $today->format('Y-m-d H:i:s');  //日付のフォーマット変更
             $stmt = $dbh->prepare("INSERT INTO user (userId, userName, userPlace, password, created) VALUES (:userId, :userName, :userPlace, :password, :created)");
             $stmt->bindParam(':userId', $_POST['userId'], PDO::PARAM_STR);
             $stmt->bindParam(':userName', $_POST['userName'], PDO::PARAM_STR);
             $stmt->bindParam(':userPlace', $_POST['userPlace'], PDO::PARAM_STR);
             $stmt->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
             $stmt->bindParam(':created', $created);
-            $stmt->execute();
-
-            $compFlag = true; 
-        }
+            $flag = $stmt->execute();
+            if($flag){  //エラーがなければ
+                $compFlag = true;
+            }else{  //エラーがあれば
+                $errorFlag = true;
+                $errorMsg = '登録エラーです．ユーザIDが重複している可能性があります．';
+            }
+            $stmt->execute();       
+         }
     }
 ?>
 <!DOCTYPE html>  
@@ -53,10 +60,13 @@
             <div class="form-wrapper">
                 <?php if(!$compFlag){ ?>
                 <h1 class="sign-title">新規登録</h1>
+                <?php if($errorFlag) { 
+                    echo $errorMsg;
+                } ?>
                 <form method="post">
                 <div class="form-item">
                     <label for="userId"></label>
-                    <input type="text" name="userId" required="required" placeholder="ユーザID"></input>
+                    <input type="text" name="userId" required="required" placeholder="ユーザID" pattern="^[0-9A-Za-z]+$"></input>
                 </div>
                 <div class="form-item">
                     <label for="userName"></label>
@@ -72,7 +82,7 @@
                 </div>
                 <div class="form-item">
                     <label for="password"></label>
-                    <input type="password" name="password" required="required" placeholder="パスワード"></input>
+                    <input type="password" name="password" required="required" placeholder="パスワード" pattern="^[0-9A-Za-z]+$"></input>
                 </div>
                 <div class="button-panel">
                     <input type="submit" class="sign-button" title="新規登録" value="新規登録"></input>
