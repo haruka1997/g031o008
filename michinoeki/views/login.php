@@ -3,25 +3,19 @@
 session_start();
 
 // エラーメッセージの初期化
-$errorMessage = "";
-$errorFlag = false;
+$errorMessage = ""; //エラーメッセージ
+$errorFlag = false; //エラーフラグ
 
 // ログインボタンが押された場合
 if (isset($_POST["login"])) {
-    // 1. ユーザIDの入力チェック
-    if (empty($_POST["userId"])) {  // emptyは値が空のとき
-        $errorMessage = 'ユーザーIDが未入力です。';
-    } else if (empty($_POST["password"])) {
-        $errorMessage = 'パスワードが未入力です。';
-    }
 
-    if (!empty($_POST["userId"]) && !empty($_POST["password"])) {
+    if (!empty($_POST["userId"]) && !empty($_POST["password"])) {   //ユーザID及びパスワードが空でなければ
 
-        // 3. エラー処理
+        //エラー処理
         try {
             $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
 
-            $stmt = $dbh->prepare('SELECT * FROM user WHERE userId = :userId AND password = :password');
+            $stmt = $dbh->prepare('SELECT * FROM user WHERE userId = :userId AND password = :password');    //入力したユーザIDかつパスワードの情報を選択
             $stmt->bindParam(':userId', $_POST['userId'], PDO::PARAM_STR);
             $stmt->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
             $stmt->execute();
@@ -34,7 +28,7 @@ if (isset($_POST["login"])) {
             } else {
                 // 該当データなし
                 $errorFlag = true;
-                $errorMessage = 'ユーザーIDあるいはパスワードに誤りがあります。';
+                $errorMessage = 'ユーザーIDあるいはパスワードに誤りがあります。';   //エラー文
             }
         } catch (PDOException $e) {
             $errorFlag = true;
@@ -82,11 +76,11 @@ if (isset($_POST["login"])) {
                   <form name="loginForm" method="post">
                     <div class="form-item">
                       <label for="userId"></label>
-                      <input type="userId" name="userId" required="required" placeholder="ユーザID"></input>
+                      <input type="userId" name="userId" required="required" placeholder="ユーザID" pattern="^[0-9A-Za-z]+$"></input>
                     </div>
                     <div class="form-item">
                       <label for="password"></label>
-                      <input type="password" name="password" required="required" placeholder="パスワード"></input>
+                      <input type="password" name="password" required="required" placeholder="パスワード" pattern="^[0-9A-Za-z]+$"></input>
                     </div>
                     <div class="button-panel">
                       <input type="submit" name="login" class="sign-button" title="ログイン" value="ログイン"></input>
@@ -94,6 +88,7 @@ if (isset($_POST["login"])) {
                   </form>
                   <div class="form-footer">
                     <p><a href="./signUp.php">新規登録</a></p>
+                  </div>
                 </div>
           </main>
         </div>
