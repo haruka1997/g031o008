@@ -70,9 +70,9 @@ if (isset($_POST["login"])) {
           <main class="mdl-layout__content">
               <div class="form-wrapper">
                   <h1 class="sign-title">ログイン</h1>
-                  <?php if($errorFlag) {
+                  <?php if($errorFlag):
                     echo $errorMessage;
-                  } ?>
+                  endif; ?>
                   <form name="loginForm" method="post">
                     <div class="form-item">
                       <label for="userId"></label>
