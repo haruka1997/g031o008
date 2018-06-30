@@ -47,7 +47,7 @@
 }
 
 .button-panel {
-  margin: 2em 0 0;
+  margin: 2em 0;
   width: 100%;
 }
 
@@ -72,7 +72,6 @@
 
 .form-footer {
   font-size: 1em;
-  padding: 2em 0;
   text-align: center;
 }
 
