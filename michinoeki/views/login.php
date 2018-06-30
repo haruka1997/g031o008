@@ -1,10 +1,16 @@
 <?php
+
+$errorMessage = ""; //エラーメッセージ
+$errorFlag = false; //エラーフラグ
+
 // セッション開始
 session_start();
 
-// エラーメッセージの初期化
-$errorMessage = ""; //エラーメッセージ
-$errorFlag = false; //エラーフラグ
+//userIdがセッションに保存されていたら
+if($_SESSION["userId"] !== undefined){
+    $_SESSION = array();    // セッション変数を全て削除
+    session_destroy();  // セッションの登録データを削除
+}
 
 // ログインボタンが押された場合
 if (isset($_POST["login"])) {
