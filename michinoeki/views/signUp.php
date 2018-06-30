@@ -87,6 +87,9 @@
                 <div class="button-panel">
                     <input type="submit" class="sign-button" title="新規登録" value="新規登録"></input>
                 </div>
+                <div class="form-footer">
+                    <p><a href="./login.php">ログイン</a></p>
+                </div>
                 </form>
                 <?php } ?>
                 <?php if($compFlag){ ?>
