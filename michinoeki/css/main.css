@@ -23,3 +23,16 @@
     top: 30px;
     margin: 2%;
 }
+.logout-button {
+    margin-top:20px;
+}
+
+.logout-button a {
+    color: #8c8c8c;
+    text-decoration: none;
+    transition: border-color 0.3s;
+}
+
+.logout-button a:hover {
+    border-bottom: 1px dotted #8c8c8c;
+}

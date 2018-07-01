@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!doctype html>
 <html>
     <head>
@@ -17,9 +20,9 @@
                     <span class="mdl-layout-title"><i class="fas fa-home"></i>    道の駅情報システム</span>
                     <div class="mdl-layout-spacer"></div>
                     <nav class="mdl-navigation mdl-layout--large-screen-only">
-                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                            Log out
-                        </button>
+                        <div class="logout-button">
+                            <p><a href="./login.php">ログアウト</a></p>
+                        </div>
                     </nav>
                 </div>
             </header>
