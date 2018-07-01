@@ -55,48 +55,48 @@
         </div>
         <main class="mdl-layout__content">
             <div class="form-wrapper">
-                <?php if(!$compFlag){ ?>
-                <h1 class="sign-title">新規登録</h1>
-                <?php if($errorFlag) { 
-                    echo $errorMsg;
-                } ?>
-                <form method="post">
-                <div class="form-item">
-                    <label for="userId"></label>
-                    <input type="text" name="userId" required="required" placeholder="ユーザID" pattern="^[0-9A-Za-z]+$"></input>
-                </div>
-                <div class="form-item">
-                    <label for="userName"></label>
-                    <input type="text" name="userName" required="required" placeholder="ユーザ名"></input>
-                </div>
-                <div class="form-item">
-                    <select name="userPlace">
-                        <option value="">居住地</option>
-                        <option value="north">県北</option>
-                        <option value="coast">沿岸</option>
-                        <option value="south">県南</option>
-                    </select>
-                </div>
-                <div class="form-item">
-                    <label for="password"></label>
-                    <input type="password" name="password" required="required" placeholder="パスワード" pattern="^[0-9A-Za-z]+$"></input>
-                </div>
-                <div class="button-panel">
-                    <input type="submit" class="sign-button" title="新規登録" value="新規登録"></input>
-                </div>
-                <div class="form-footer">
-                    <p><a href="./login.php">ログイン</a></p>
-                </div>
-                </form>
-                <?php } ?>
-                <?php if($compFlag){ ?>
-                <h1 class="sign-complite">登録が完了しました！</h1>
-                <form>
-                <div class="form-footer">
-                    <p><a href="./login.php">ログイン画面へ</a></p>
-                </div>
-                </form>
-                <?php } ?>
+                <?php if(!$compFlag): ?>
+                    <h1 class="sign-title">新規登録</h1>
+                    <?php if($errorFlag) : 
+                        echo $errorMsg;
+                    endif; ?>
+                    <form method="post">
+                    <div class="form-item">
+                        <label for="userId"></label>
+                        <input type="text" name="userId" required="required" placeholder="ユーザID" pattern="^[0-9A-Za-z]+$"></input>
+                    </div>
+                    <div class="form-item">
+                        <label for="userName"></label>
+                        <input type="text" name="userName" required="required" placeholder="ユーザ名"></input>
+                    </div>
+                    <div class="form-item">
+                        <select name="userPlace">
+                            <option value="">居住地</option>
+                            <option value="north">県北</option>
+                            <option value="coast">沿岸</option>
+                            <option value="south">県南</option>
+                        </select>
+                    </div>
+                    <div class="form-item">
+                        <label for="password"></label>
+                        <input type="password" name="password" required="required" placeholder="パスワード" pattern="^[0-9A-Za-z]+$"></input>
+                    </div>
+                    <div class="button-panel">
+                        <input type="submit" class="sign-button" title="新規登録" value="新規登録"></input>
+                    </div>
+                    <div class="form-footer">
+                        <p><a href="./login.php">ログイン</a></p>
+                    </div>
+                    </form>
+                <?php endif; ?>
+                <?php if($compFlag): ?>
+                    <h1 class="sign-complite">登録が完了しました！</h1>
+                    <form>
+                    <div class="form-footer">
+                        <p><a href="./login.php">ログイン画面へ</a></p>
+                    </div>
+                    </form>
+                <?php endif; ?>
             </div>
         </main>
     </div>    
