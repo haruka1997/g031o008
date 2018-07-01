@@ -9,14 +9,11 @@
         //データが入力されているかどうかチェックする
         if(array_key_exists('userId',$_POST) AND array_key_exists('userName', $_POST) AND array_key_exists('password', $_POST) AND array_key_exists('userPlace', $_POST))
         {
-            $today = new DateTime();    //今日の日付を抽出
-            $created = $today->format('Y-m-d H:i:s');  //日付のフォーマット変更
-            $stmt = $dbh->prepare("INSERT INTO user (userId, userName, userPlace, password, created) VALUES (:userId, :userName, :userPlace, :password, :created)");
+            $stmt = $dbh->prepare("INSERT INTO user (userId, userName, userPlace, password) VALUES (:userId, :userName, :userPlace, :password)");
             $stmt->bindParam(':userId', $_POST['userId'], PDO::PARAM_STR);
             $stmt->bindParam(':userName', $_POST['userName'], PDO::PARAM_STR);
             $stmt->bindParam(':userPlace', $_POST['userPlace'], PDO::PARAM_STR);
             $stmt->bindParam(':password', $_POST['password'], PDO::PARAM_STR);
-            $stmt->bindParam(':created', $created);
             $flag = $stmt->execute();
             if($flag){  //エラーがなければ
                 $compFlag = true;
