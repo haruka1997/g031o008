@@ -46,6 +46,9 @@
   appearance: none;
 }
 
+/**
+* 変更(7/1)：新規登録ボタンの下の見切れを修正
+*/
 .button-panel {
   margin: 2em 0;
   width: 100%;

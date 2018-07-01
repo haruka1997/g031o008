@@ -23,6 +23,9 @@
     top: 30px;
     margin: 2%;
 }
+/**
+* 変更(7/1)：ログアウトボタンのデザインを変更
+**/
 .logout-button {
     margin-top:20px;
 }

@@ -6,6 +6,9 @@ $errorFlag = false; //エラーフラグ
 // セッション開始
 session_start();
 
+/**
+ * 変更(7/1)：ログアウトした時にsessionに保存されたuserIdを削除する処理を追加
+ */
 //userIdがセッションに保存されていたら
 if($_SESSION["userId"] !== undefined){
     $_SESSION = array();    // セッション変数を全て削除
@@ -76,6 +79,7 @@ if (isset($_POST["login"])) {
           <main class="mdl-layout__content">
               <div class="form-wrapper">
                   <h1 class="sign-title">ログイン</h1>
+                  <!-- 変更(7/1)：if文の表記を「if():~endif;」に変更 -->
                   <?php if($errorFlag):
                     echo $errorMessage;
                   endif; ?>

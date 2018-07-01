@@ -9,6 +9,9 @@
         //データが入力されているかどうかチェックする
         if(array_key_exists('userId',$_POST) AND array_key_exists('userName', $_POST) AND array_key_exists('password', $_POST) AND array_key_exists('userPlace', $_POST))
         {
+            /**
+             * 変更(7/1): createdの時刻挿入をDB側で行うように変更したのでコード削除
+             */
             $stmt = $dbh->prepare("INSERT INTO user (userId, userName, userPlace, password) VALUES (:userId, :userName, :userPlace, :password)");
             $stmt->bindParam(':userId', $_POST['userId'], PDO::PARAM_STR);
             $stmt->bindParam(':userName', $_POST['userName'], PDO::PARAM_STR);
@@ -55,6 +58,7 @@
         </div>
         <main class="mdl-layout__content">
             <div class="form-wrapper">
+                <!-- 変更(7/1)：if文の表記を「if():~endif;」に変更 -->
                 <?php if(!$compFlag): ?>
                     <h1 class="sign-title">新規登録</h1>
                     <?php if($errorFlag) : 
@@ -84,6 +88,7 @@
                     <div class="button-panel">
                         <input type="submit" class="sign-button" title="新規登録" value="新規登録"></input>
                     </div>
+                    <!-- 変更(7/1)：ログイン画面に戻れるようにログインボタンを追加 -->
                     <div class="form-footer">
                         <p><a href="./login.php">ログイン</a></p>
                     </div>
