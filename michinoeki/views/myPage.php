@@ -20,6 +20,7 @@
                     <span class="mdl-layout-title"><i class="fas fa-home"></i>    道の駅情報システム</span>
                     <div class="mdl-layout-spacer"></div>
                     <nav class="mdl-navigation mdl-layout--large-screen-only">
+                        <!-- 変更(7/1): ログアウトボタンの追加 -->
                         <div class="logout-button">
                             <p><a href="./login.php">ログアウト</a></p>
                         </div>
