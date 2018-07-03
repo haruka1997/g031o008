@@ -2,13 +2,19 @@
 
 $errorMessage = ""; //エラーメッセージ
 $errorFlag = false; //エラーフラグ
+print_r($_COOKIE['PHPSESSID']);
 
 // セッション開始
 session_start();
 
 /**
- * 変更(7/1)：ログアウトした時にsessionに保存されたuserIdを削除する処理を追加
+ * 変更(7/3): セッションクッキーの削除処理を追加
  */
+//クッキー情報の削除
+if($_COOKIE['PHPSESSID']){  //もしセッションクッキー情報が残っていれば
+    setcookie('PHPSESSID', '', time() - 1800);  //該当クッキー削除
+}
+
 //userIdがセッションに保存されていたら
 if($_SESSION["userId"] !== undefined){
     $_SESSION = array();    // セッション変数を全て削除
@@ -79,7 +85,6 @@ if (isset($_POST["login"])) {
           <main class="mdl-layout__content">
               <div class="form-wrapper">
                   <h1 class="sign-title">ログイン</h1>
-                  <!-- 変更(7/1)：if文の表記を「if():~endif;」に変更 -->
                   <?php if($errorFlag):
                     echo $errorMessage;
                   endif; ?>
