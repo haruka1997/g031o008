@@ -1,11 +1,8 @@
 <?php
+session_start();    // セッション開始
 
 $errorMessage = ""; //エラーメッセージ
 $errorFlag = false; //エラーフラグ
-print_r($_COOKIE['PHPSESSID']);
-
-// セッション開始
-session_start();
 
 /**
  * 変更(7/3): セッションクッキーの削除処理を追加
@@ -16,9 +13,13 @@ if($_COOKIE['PHPSESSID']){  //もしセッションクッキー情報が残っ�
 }
 
 //userIdがセッションに保存されていたら
-if($_SESSION["userId"] !== undefined){
+if($_SESSION['userId'] !== undefined){
     $_SESSION = array();    // セッション変数を全て削除
-    session_destroy();  // セッションの登録データを削除
+    /**
+     * 変更点(7/3): 
+     * なぜかmyPage.phpに遷移した時に$_SESSIONの内容が消えてしまう...ので
+     * 「session_destroy();」の記述を削除したところ消えなくなった．
+     */
 }
 
 // ログインボタンが押された場合
@@ -28,7 +29,7 @@ if (isset($_POST["login"])) {
 
         //エラー処理
         try {
-            $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
+            $dbh = new PDO('mysql:host=localhost; dbname=g031o008', 'localhost', 'localhost');
 
             $stmt = $dbh->prepare('SELECT * FROM user WHERE userId = :userId AND password = :password');    //入力したユーザIDかつパスワードの情報を選択
             $stmt->bindParam(':userId', $_POST['userId'], PDO::PARAM_STR);
@@ -37,7 +38,7 @@ if (isset($_POST["login"])) {
 
             if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {    //入力したユーザIDとパスワードに一致するデータがあれば
                 session_regenerate_id(true);    //セッション置き換え
-                $_SESSION["userId"] = $row['userId'];   //ユーザIDをセッションに保存
+                $_SESSION['userId'] = $row['userId'];   //ユーザIDをセッションに保存
                 header("Location: myPage.php");  // マイページ画面へ遷移
                 exit();  // 処理終了
             } else {
