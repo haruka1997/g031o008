@@ -29,7 +29,7 @@ if (isset($_POST["login"])) {
 
         //エラー処理
         try {
-            $dbh = new PDO('mysql:host=localhost; dbname=g031o008', 'localhost', 'localhost');
+            $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
 
             $stmt = $dbh->prepare('SELECT * FROM user WHERE userId = :userId AND password = :password');    //入力したユーザIDかつパスワードの情報を選択
             $stmt->bindParam(':userId', $_POST['userId'], PDO::PARAM_STR);

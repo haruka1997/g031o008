@@ -4,13 +4,13 @@
 
 .profile-image{
     display: inline-block;
-	width: 250px;
-	height: 250px;
+    width: 240px;
+    height: 100%;
     background: #ffffff;
-    border: #dddddd solid 1px;
     top: 30px;
     left: 40px;
     position: relative;
+    max-height: 260px;
 }
 
 .profile-table{
@@ -21,10 +21,9 @@
 
 .table {
     border-collapse: collapse;
-    width: 800px;
+    width: 860px;
     height: 500px;
-    font-size: 12px;
-    text-align: left;
+    font-size: 15px;
 }
 .table th    {
     color: #FFF;
@@ -33,13 +32,125 @@
     padding: 10px;
     border-bottom: 1px solid #CCC;
     width: 100px;
+    text-align: center;
 }
 .table td    {
-    padding: 10px;
+    padding: 8px;
     color: #666;
     border-bottom: 1px solid #CCC;
+    text-align: left;
 }
 
 tr:nth-child(odd) {
     background: #f2f2f2;
+}
+
+.edit-button{
+    float: right;
+    position: relative;
+    margin: 50px 10px 10px 0;
+}
+
+.message{
+    position: relative;
+    float: left;
+    top: 350px;
+    width: 280px;
+    height: 273px;
+    left: 45px;
+    border: solid 1px #d1d0d0;
+}
+
+.message-header{
+    position: relative;
+    width: 100%;
+    height: 35px;
+    border-bottom: 1px #d1d0d0 solid;
+    text-align: center;
+    background-color: #517D99;
+}
+
+.message-header p{
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    padding-top: 7px;
+}
+
+.message-list{
+    position: relative;
+    overflow: auto;
+    height: calc(100% - 35px);
+}
+
+.message-list p{
+    border-bottom: solid 1px #d1d0d0;
+    margin: 0px;
+    padding: 10px 5px 5px 10px;
+}
+
+/* 編集モーダル */
+.modal-header{
+    border-bottom: 1px solid #d1d0d0;
+    height: 25px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.edit-profile-image{
+    display: inline-block;
+	width: 200px;
+	height: 100%;
+    background: #ffffff;
+    top: 30px;
+    left: 40px;
+    position: relative;
+}
+
+.edit-profile-table{
+    position: absolute;
+    top: 87px;
+    left: 300px;
+}
+
+.edit-table{
+    border-collapse: collapse;
+    width: 540px;
+    height: 300px;
+    font-size: 15px;
+}
+
+.edit-table th    {
+    color: #FFF;
+    background-color: #517D99;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 1px solid #CCC;
+    width: 100px;
+    text-align: center;
+}
+.edit-table td    {
+    padding: 8px;
+    color: #666;
+    border-bottom: 1px solid #CCC;
+    text-align: left;
+}
+
+.edit-table input,
+.edit-table textarea,
+.edit-table select{
+    width: 97%;
+    font-size: 15px;
+}
+
+.regist-button{
+    float: right;
+    position: relative;
+    margin: 13% 5% 0 0;
+}
+
+.icon-change-button{
+    position: relative;
+    margin-top: 15px;
+    width: 200px;
 }

@@ -19,13 +19,10 @@
     color: #333;
     position: absolute;
     width: 95%;
-    height: 100%;
-    top: 30px;
+    top: 15px;
     margin: 2%;
 }
-/**
-* 変更(7/1)：ログアウトボタンのデザインを変更
-**/
+
 .logout-button {
     margin-top:20px;
 }
