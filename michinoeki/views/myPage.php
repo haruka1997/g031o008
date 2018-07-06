@@ -29,7 +29,7 @@ try {
 if (isset($_POST["regist"])) {
 
     try {
-        $dbh = new PDO('mysql:host=localhost; dbname=g031o008', 'localhost', 'localhost');
+        $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
     
         $stmt = $dbh->prepare('UPDATE user SET userName = :userName, userPlace = :userPlace, introduce = :introduce, icon = :icon WHERE userId = :userId');    //ユーザIDに合致するユーザ情報の更新
         $stmt->bindParam(':userName', $_POST['userName'], PDO::PARAM_STR);  //ユーザ名
