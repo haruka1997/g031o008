@@ -4,9 +4,7 @@ session_start();    // セッション開始
 $errorMessage = ""; //エラーメッセージ
 $errorFlag = false; //エラーフラグ
 
-/**
- * 変更(7/3): セッションクッキーの削除処理を追加
- */
+
 //クッキー情報の削除
 if($_COOKIE['PHPSESSID']){  //もしセッションクッキー情報が残っていれば
     setcookie('PHPSESSID', '', time() - 1800);  //該当クッキー削除
@@ -15,11 +13,6 @@ if($_COOKIE['PHPSESSID']){  //もしセッションクッキー情報が残っ�
 //userIdがセッションに保存されていたら
 if($_SESSION['userId'] !== undefined){
     $_SESSION = array();    // セッション変数を全て削除
-    /**
-     * 変更点(7/3): 
-     * なぜかmyPage.phpに遷移した時に$_SESSIONの内容が消えてしまう...ので
-     * 「session_destroy();」の記述を削除したところ消えなくなった．
-     */
 }
 
 // ログインボタンが押された場合

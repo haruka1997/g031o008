@@ -5,6 +5,14 @@ $user = []; //ユーザの情報
 $errorFlag = false; //エラーフラグ
 $errorMessage = ''; //エラーメッセージ
 
+/**
+ * 変更点(7/7): sessionにuserIdが格納されているかチェック
+ * されていなければログイン画面に遷移する
+ */
+if(!isset($_SESSION['userId'])){
+    header('Location: login.php');
+}
+
 //ユーザの情報取得処理
 try {
     $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
@@ -15,6 +23,15 @@ try {
 
     if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {    //ユーザ情報がDBにあれば
         $user = $row;
+        
+        /**
+         * 変更点(7/7): アイコン画像が登録されているかチェック
+         * されていなければデフォルト画像をセット
+         */
+        if($user['icon'] === ""){
+            $user['icon'] = base64_encode(file_get_contents('./../img/default.png'));
+        }
+
     } else {
         // 該当データなし
         $errorFlag = true;
@@ -32,10 +49,20 @@ if (isset($_POST["regist"])) {
         $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
     
         $stmt = $dbh->prepare('UPDATE user SET userName = :userName, userPlace = :userPlace, introduce = :introduce, icon = :icon WHERE userId = :userId');    //ユーザIDに合致するユーザ情報の更新
-        $stmt->bindParam(':userName', $_POST['userName'], PDO::PARAM_STR);  //ユーザ名
+        $stmt->bindParam(':userName',  $_POST['userName'], PDO::PARAM_STR);  //ユーザ名
         $stmt->bindParam(':userPlace', $_POST['userPlace'], PDO::PARAM_STR);    //居住地
         $stmt->bindParam(':introduce', $_POST['introduce'], PDO::PARAM_STR);    //自己紹介
-        $icon = base64_encode(file_get_contents($_FILES['icon']['tmp_name']));  //icon画像base64化
+        
+        /**
+         * 変更点(7/7): アイコン画像を指定しなかった場合に以前の画像が消えてしまうバグ修正
+         * アイコン指定しなかった場合は以前の画像をセット
+         */
+        //アイコン指定可否判定
+        if($_FILES['icon']['tmp_name'] !== ''){
+            $icon = base64_encode(file_get_contents($_FILES['icon']['tmp_name']));  //icon画像base64化
+        }else{
+            $icon = $user['icon'];
+        }
         $stmt->bindParam(':icon', $icon, PDO::PARAM_STR);   //アイコン画像
         $stmt->bindParam(':userId', $_SESSION['userId'], PDO::PARAM_STR);   //ユーザID
         $flag = $stmt->execute();
@@ -103,27 +130,29 @@ if (isset($_POST["regist"])) {
                         <?= $errorMessage ?>
                         <!-- プロフィール情報 -->
                         <div class="profile-table">
+                            <!-- 変更点(7/7): ユーザ情報の表示についてXSS対策追加 -->
                             <table class="table">
                                 <tbody>
                                 <tr>
                                     <th>ユーザ名</th>
-                                    <td><?= $user['userName'] ?></td>
+                                    <td><?= htmlspecialchars($user['userName'], ENT_QUOTES, "UTF-8") ?></td>
                                 </tr>
                                 <tr>
                                     <th>居住地</th>
-                                    <td><?= $user['userPlace'] ?></td>
+                                    <td><?= htmlspecialchars($user['userPlace'], ENT_QUOTES, "UTF-8") ?></td>
                                 </tr>
                                 <tr>
                                     <th>訪問駅数</th>
-                                    <td><?= $user['visitStationNum'] ?></td>
+                                    <td><?= htmlspecialchars($user['visitStationNum'], ENT_QUOTES, "UTF-8") ?></td>
                                 </tr>
                                 <tr>
                                     <th>入手切符数</th>
-                                    <td><?= $user['getTicketNum'] ?></td>
+                                    <td><?= htmlspecialchars($user['getTicketNum'], ENT_QUOTES, "UTF-8") ?></td>
                                 </tr>
+                                <!-- 変更点(7/7): 自己紹介文の改行を反映できるように修正 -->
                                 <tr>
                                     <th>自己紹介</th>
-                                    <td style="height:200px;"><?= $user['introduce'] ?></td>
+                                    <td style="height:200px;"><pre><?= htmlspecialchars($user['introduce'], ENT_QUOTES, "UTF-8") ?></pre></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -165,10 +194,9 @@ if (isset($_POST["regist"])) {
                                                 <th>居住地</th>
                                                 <td>
                                                 <select name="userPlace">
-                                                    <option value="">居住地</option>
-                                                    <option value="north">県北</option>
-                                                    <option value="coast">沿岸</option>
-                                                    <option value="south">県南</option>
+                                                    <option value="県北" <?= $user['userPlace'] != '県北' ?: 'selected' ?>>県北</option>
+                                                    <option value="沿岸" <?= $user['userPlace'] != '沿岸' ?: 'selected' ?>>沿岸</option>
+                                                    <option value="県南" <?= $user['userPlace'] != '県南' ?: 'selected' ?>>県南</option>
                                                 </select>
                                                 </td>
                                             </tr>
