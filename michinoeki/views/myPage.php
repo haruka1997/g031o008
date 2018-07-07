@@ -193,6 +193,7 @@ if (isset($_POST["regist"])) {
                                             <tr>
                                                 <th>居住地</th>
                                                 <td>
+                                                <!-- 変更点(7/7): 初期値に登録されたデータを反映 -->
                                                 <select name="userPlace">
                                                     <option value="県北" <?= $user['userPlace'] != '県北' ?: 'selected' ?>>県北</option>
                                                     <option value="沿岸" <?= $user['userPlace'] != '沿岸' ?: 'selected' ?>>沿岸</option>
