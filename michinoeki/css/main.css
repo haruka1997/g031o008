@@ -36,3 +36,8 @@
 .logout-button a:hover {
     border-bottom: 1px dotted #8c8c8c;
 }
+
+.mdl-layout-title .fas,
+.mdl-navigation__link .fas{
+    margin-right: 10px;
+}

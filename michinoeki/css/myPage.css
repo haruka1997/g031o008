@@ -87,6 +87,12 @@ tr:nth-child(odd) {
     border-bottom: solid 1px #d1d0d0;
     margin: 0px;
     padding: 10px 5px 5px 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.message-list label{
+    cursor: pointer;
 }
 
 /* 編集モーダル */
@@ -153,4 +159,47 @@ tr:nth-child(odd) {
     position: relative;
     margin-top: 15px;
     width: 200px;
+}
+
+/* 受信メッセージ確認モーダル */
+.title-header{
+    float: left;
+    border-bottom: 1px solid #d1d0d0;
+    height: 25px;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.title-header p{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 15px;
+}
+
+.title-sub-header{
+    width: 100%;
+}
+
+.title-sub-header .send-user{
+    float: left;
+    margin: 8px;
+}
+
+.title-sub-header .send-date{
+    float: right;
+    margin: 15px;
+}
+
+.body{
+    position: relative;
+    width: 100%;
+    float: left;
+    padding: 20px;
+    height: 100px;
+}
+
+.send-user img{
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
 }
