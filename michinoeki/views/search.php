@@ -9,8 +9,7 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
         <link rel="stylesheet" href="./../css/main.css">
-        <link rel="stylesheet" href="./../css/myPage.css">
-        <link rel="stylesheet" href="./../css/modal.css">
+        <link rel="stylesheet" href="./../css/search.css">
 
     </head>
     <body>
@@ -37,7 +36,34 @@
             </div>
             <main class="mdl-layout__content">
                 <div class="page-content">
-                    道の駅検索ページ(製作中...)
+                    <div class="search-content">
+                        <div class="search-title"><i class="fas fa-search"></i> 道の駅検索</div>
+                        <div class="search-form">
+                            <form type="post" action="searchList.php">
+                                <div class="search-form-item">
+                                    <label for="stationName">名前</label>
+                                    <input type="text" name="stationName"></input>
+                                </div>
+                                <div class="search-form-item">
+                                    <label for="stationPlace">地域</label>
+                                    <input type="text" name="stationPlace"></input>
+                                </div>
+                                <div class="search-form-item">
+                                    <label for="recommend">おすすめ品</label>
+                                    <input type="text" name="recommend"></input>
+                                </div>
+                                <div class="search-form-checkbox">
+                                    <input type="checkbox" name="condition[]" value="directMarket">産直が充実している
+                                    <input type="checkbox" name="condition[]" value="cafeteria">食堂が美味しい
+                                    <input type="checkbox" name="condition[]" value="carNight">車中泊がしやすい
+                                </div>
+                                <div class="search-button">
+                                    <button type="submit" name="search" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">検索</button>
+                                    <button type="submit" name="clear" class="mdl-button mdl-js-button mdl-button--raised">クリア</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

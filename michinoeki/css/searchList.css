@@ -1,0 +1,48 @@
+.search-list-header{
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px #f2f2f2 solid;
+}
+.search-button{
+    margin: 10px;
+}
+.search-count{
+    padding: 15px;
+    font-size: 18px;
+    float: left;
+    margin-left: 20px;
+    color: #494949;
+}
+.search-list{
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px #f2f2f2 solid;
+    width: 100%;
+    cursor: pointer;
+}
+.station-image{
+    width: 20%;
+    margin: 20px 20px 30px 50px;
+}
+.station-image img{
+    width: 100%;
+}
+.station-explain{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;  
+}
+.station-name{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0px 15px 0px;
+}
+.station-body{
+    margin: 0px 0px 0px 10px;
+    color: #494949;
+}
+
+.station-body p{
+    font-size: 17px;
+    margin: 10px 0 10px;
+}
