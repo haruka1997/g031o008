@@ -40,27 +40,28 @@
                         <div class="search-title"><i class="fas fa-search"></i> 道の駅検索</div>
                         <div class="search-form">
                             <form type="post" action="searchList.php">
-                                <div class="search-form-item">
-                                    <label for="stationName">名前</label>
-                                    <input type="text" name="stationName"></input>
-                                </div>
-                                <div class="search-form-item">
-                                    <label for="stationPlace">地域</label>
-                                    <input type="text" name="stationPlace"></input>
-                                </div>
-                                <div class="search-form-item">
-                                    <label for="recommend">おすすめ品</label>
-                                    <input type="text" name="recommend"></input>
-                                </div>
-                                <div class="search-form-checkbox">
-                                    <input type="checkbox" name="condition[]" value="directMarket">産直が充実している
-                                    <input type="checkbox" name="condition[]" value="cafeteria">食堂が美味しい
-                                    <input type="checkbox" name="condition[]" value="carNight">車中泊がしやすい
-                                </div>
-                                <div class="search-button">
-                                    <button type="submit" name="search" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">検索</button>
-                                    <button type="submit" name="clear" class="mdl-button mdl-js-button mdl-button--raised">クリア</button>
-                                </div>
+                                    <div class="search-form-item">
+                                        <label for="stationName">名前</label>
+                                        <input type="text" name="stationName" placeholder="例: 石鳥谷" style="margin-left:40px;"></input>
+                                    </div>
+                                    <div class="search-form-item">
+                                        <label for="stationPlace">地域(市町村)</label>
+                                        <input type="text" name="stationPlace" placeholder="例: 花巻"></input>
+                                    </div>
+                                    <div class="search-form-item">
+                                        <label for="recommend">おすすめ品</label>
+                                        <input type="text" name="recommend" placeholder="例: ラーメン"></input>
+                                    </div>
+                                    <div class="search-form-checkbox">
+                                        <label for="condition[]">絞り込み条件:</label>
+                                        <input type="checkbox" name="condition[]" value="directMarket">産直が充実している
+                                        <input type="checkbox" name="condition[]" value="cafeteria">食堂が美味しい
+                                        <input type="checkbox" name="condition[]" value="carNight">車中泊がしやすい
+                                    </div>
+                                    <div class="search-button">
+                                        <button type="submit" name="search" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">検索</button>
+                                        <button type="submit" name="clear" class="mdl-button mdl-js-button mdl-button--raised">クリア</button>
+                                    </div>
                             </form>
                         </div>
                     </div>
