@@ -1,115 +1,56 @@
 <?php
 $search_list = [];  //検索結果
-$display_list = []; //表示結果(重複削除)
 
     // エラー処理
     try {
-        $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
-        
-        //もし駅名または駅の地域が検索されたら
-        if(($_GET["stationName"] !== "") or ($_GET["stationPlace"] !== "")){
-            $stmt = $dbh->prepare('SELECT stationId, stationName, stationPlace, stationImage FROM stationOverview WHERE stationName like "%":stationName"%" AND stationPlace like "%":stationPlace"%"');    //入力した駅名かつ駅の地域の情報を選択
-            $stmt->bindParam(':stationName', $_GET['stationName'], PDO::PARAM_STR); //駅名
-            $stmt->bindParam(':stationPlace', $_GET['stationPlace'], PDO::PARAM_STR);   //駅の地域
-            $stmt->execute();   //実行
-
-            if ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {    //入力した駅名と駅の地域に一致するデータがあれば
-               $search_list = $row; //検索リストに追加
-               //おすすめ品情報取得
-               foreach($search_list as $key => $value){
-                $stmt = $dbh->prepare('SELECT recommendId, stationId, body FROM stationRecommend WHERE stationId = :stationId');    //取得した駅IDをもとにおすすめ品情報を取得
-                $stmt->bindParam(':stationId', $search_list[$key]['stationId'], PDO::PARAM_INT);    //駅ID
-                $stmt->execute();   //実行
-
-                if ($recommend = $stmt->fetch(PDO::FETCH_ASSOC)) {    //取得した駅IDに一致するおすすめ品情報があれば
-                    $search_list[$key]['recommendId'] = $recommend['recommendId'];  //検索リストにおすすめ品IDを追加
-                    $search_list[$key]['recommend'] = $recommend['body'];   //検索リストにおすすめ品を追加
-                }
-               }
-            } else {
-                // 該当データなし
-                $errorFlag = true;
-                $errorMessage = '一致するデータがありません';   //エラー文
-            }
-        }
+        $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
+        $sql =  'SELECT * FROM stationOverview AS overview LEFT OUTER JOIN stationRecommend AS recommend ON overview.stationId = recommend.stationId LEFT OUTER JOIN stationRate AS rate ON overview.stationId = rate.stationId
+        WHERE overview.stationName LIKE "%":stationName"%" AND overview.stationPlace LIKE "%":stationPlace"%"';
 
         //おすすめ品が検索されたら
         if($_GET["recommend"] !== ""){
-            $stmt = $dbh->prepare('SELECT recommendId, stationId, body FROM stationRecommend WHERE body like "%":recommend"%"');    //入力したおすすめ品の情報を選択
-            $stmt->bindParam(':recommend', $_GET['recommend'], PDO::PARAM_STR); //おすすめ品
-            $stmt->execute();   //実行
-
-            if ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {    //入力したおすすめ品に一致するデータがあれば
-                foreach($row as $key => $value){
-                    // 駅情報の取得
-                    $stmt = $dbh->prepare('SELECT stationId, stationName, stationPlace, stationImage FROM stationOverview WHERE stationId = :stationId');    //入力した駅IDに一致する駅情報を取得
-                    $stmt->bindParam(':stationId', $row[$key]['stationId'], PDO::PARAM_INT);    //駅ID
-                    $stmt->execute();   //実行
-
-                    if ($station = $stmt->fetch(PDO::FETCH_ASSOC)) {    //入力した駅IDに一致する駅情報があれば
-                        $row[$key]['stationName'] = $station['stationName'];
-                        $row[$key]['stationPlace'] = $station['stationPlace'];
-                        $row[$key]['stationImage'] = $station['stationImage'];
-                    }
-                    array_push($search_list, $value);
-                }
-                $stmt = null;
-            } else {
-                // 該当データなし
-                $errorFlag = true;
-                $errorMessage = '一致するデータがありません';   //エラー文
-            }
+            $sql = $sql .'AND recommend.body LIKE "%":recommend"%"';
         }
-
-        // 条件検索されたら
-       if($_GET["condition"] !== ""){
+        // 絞り込み条件が検索されたら
+        if($_GET["condition"] !== ""){
             foreach($_GET["condition"] as $key => $value){
                 switch($value){
                     case 'directMarket': 
-                        $stmt = $dbh->prepare('SELECT stationId FROM stationRate WHERE 4 < directMarket');    
+                        $sql = $sql .'AND rate.directMarket > 4';    
                         break;
                     case 'cafeteria':
-                        $stmt = $dbh->prepare('SELECT stationId FROM stationRate WHERE 4 < cafeteria');  
+                        $sql = $sql .'AND rate.cafeteria > 4';
                         break;
                     case 'carNight':
-                        $stmt = $dbh->prepare('SELECT stationId FROM stationRate WHERE 4 < carNight');
+                        $sql = $sql .'AND rate.carNight > 4';
                         break;
-                }
-                $stmt->bindParam(':stationId', $search_list[$searchKey]['stationId'], PDO::PARAM_INT);    //駅ID
-                $stmt->execute();   //実行
-                if ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {    //入力したおすすめ品に一致するデータがあれば
-                    $search_list = $row;
-                }
-                $stmt = null;
-            }
-
-            //駅情報とおすすめ品の取得
-            foreach($search_list as $key => $value){
-                $stmt = $dbh->prepare('SELECT stationId, stationName, stationPlace, stationImage FROM stationOverview WHERE stationId = :stationId');    //入力した駅IDに一致する駅情報を取得
-                $stmt->bindParam(':stationId', $search_list[$key]['stationId'], PDO::PARAM_INT);    //駅ID
-                $stmt->execute();   //実行
-
-                if ($station = $stmt->fetch(PDO::FETCH_ASSOC)) {    //入力した駅IDに一致する駅情報があれば
-                    $search_list[$key]['stationName'] = $station['stationName'];
-                    $search_list[$key]['stationPlace'] = $station['stationPlace'];
-                    $search_list[$key]['stationImage'] = $station['stationImage'];
-                }
-
-                $stmt = null;
-
-                $stmt = $dbh->prepare('SELECT recommendId, stationId, body FROM stationRecommend WHERE stationId = :stationId');    //取得した駅IDをもとにおすすめ品情報を取得
-                $stmt->bindParam(':stationId', $search_list[$key]['stationId'], PDO::PARAM_INT);    //駅ID
-                $stmt->execute();   //実行
-
-                if ($recommend = $stmt->fetch(PDO::FETCH_ASSOC)) {    //取得した駅IDに一致するおすすめ品情報があれば
-                    $search_list[$key]['recommendId'] = $recommend['recommendId'];  //検索リストにおすすめ品IDを追加
-                    $search_list[$key]['recommend'] = $recommend['body'];   //検索リストにおすすめ品を追加
                 }
             }
         }
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindParam(':stationName', $_GET['stationName'], PDO::PARAM_STR); //駅名
+        $stmt->bindParam(':stationPlace', $_GET['stationPlace'], PDO::PARAM_STR);   //駅の地域
+        if($_GET["recommend"] !== ""){
+            $stmt->bindParam(':recommend', $_GET['recommend'], PDO::PARAM_STR);   //おすすめ品
+        }
+        $stmt->execute();   //実行
 
-       $search_list = dedepulication($search_list); //重複削除
+        if ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {   //一致するデータがあれば
+            $search_list = dedepulication($row);   //重複削除
 
+            //各駅のおすすめ情報の全件取得
+            foreach($search_list as $key => $value){
+                $stmt = $dbh->prepare('SELECT * FROM stationRecommend WHERE stationId = :stationId;');    //駅IDに合致するおすすめ品情報の取得
+                $stmt->bindParam(':stationId', $search_list[$key]['stationId'], PDO::PARAM_STR);   //駅ID
+                $stmt->execute();   //実行
+
+                if ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {    //一致するデータがあれば
+                    foreach($row as $rowKey => $rowValue){
+                        $search_list[$key]['recommend'] = $row[$rowKey]['body'] ." " .$search_list[$key]['recommend'];  //おすすめ情報の追記
+                    }
+                }
+            }
+        }
     } catch (PDOException $e) {
         $errorFlag = true;
         $errorMessage = 'データベースエラー';
