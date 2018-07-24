@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="search-button">
                                         <button type="submit" name="search" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">検索</button>
-                                        <button type="submit" name="clear" class="mdl-button mdl-js-button mdl-button--raised">クリア</button>
+                                        <button type="reset" name="clear" class="mdl-button mdl-js-button mdl-button--raised">クリア</button>
                                     </div>
                             </form>
                         </div>
