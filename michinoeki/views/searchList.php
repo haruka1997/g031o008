@@ -3,7 +3,7 @@ $search_list = [];  //検索結果
 
     // エラー処理
     try {
-        $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
+        $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
         $sql =  'SELECT * FROM stationOverview AS overview LEFT OUTER JOIN stationRecommend AS recommend ON overview.stationId = recommend.stationId LEFT OUTER JOIN stationRate AS rate ON overview.stationId = rate.stationId
         WHERE overview.stationName LIKE "%":stationName"%" AND overview.stationPlace LIKE "%":stationPlace"%"';
 
@@ -117,18 +117,23 @@ $search_list = [];  //検索結果
                         </form>
                     </div>
                     <?php foreach($search_list as $key => $value){ ?>
-                    <div class="search-list">
-                        <div class="station-image">
-                            <img border="0" src="<?= $search_list[$key]["stationImage"] ?>">
-                        </div>
-                        <div class="station-explain">
-                            <div class="station-name"><?= $search_list[$key]["stationName"] ?> </div>
-                            <div class="station-body">
-                                <p>住所：<?= $search_list[$key]["stationPlace"] ?> </p>
-                                <p>おすすめ品：<?= $search_list[$key]["recommend"] ?> </p>
+                    <form action="searchDetail.php" type="post">
+                        <div class="search-list">
+                            <div class="station-image">
+                                <img border="0" src="<?= $search_list[$key]["stationImage"] ?>">
+                            </div>
+                            <div class="station-explain">
+                                <div class="station-name"><?= $search_list[$key]["stationName"] ?> </div>
+                                <div class="station-body">
+                                    <p>住所：<?= $search_list[$key]["stationPlace"] ?> </p>
+                                    <p>おすすめ品：<?= $search_list[$key]["recommend"] ?> </p>
+                                </div>
+                            </div>
+                            <div class="detail-link">
+                                <a href="./searchDetail.php?stationId=<?= $search_list[$key]['stationId'] ?>">詳細</a>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <?php } ?>
                 </div>
             </main>

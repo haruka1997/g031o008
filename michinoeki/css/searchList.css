@@ -18,7 +18,6 @@
     flex-direction: row;
     border-bottom: 2px #f2f2f2 solid;
     width: 100%;
-    cursor: pointer;
 }
 .station-image{
     width: 20%;
@@ -30,7 +29,8 @@
 .station-explain{
     margin: 20px;
     display: flex;
-    flex-direction: column;  
+    flex-direction: column;
+    width: 70%;  
 }
 .station-name{
     font-size: 20px;
@@ -45,4 +45,19 @@
 .station-body p{
     font-size: 17px;
     margin: 10px 0 10px;
+}
+
+.detail-link{
+    vertical-align: middle;
+    margin-top: 10%;
+    width: 200px;
+    float: right;
+    height: 100%;
+}
+
+.detail-link a{
+    float: right;
+    margin-right: 50px;
+    cursor: pointer;
+    color: #9b9a9a;
 }
