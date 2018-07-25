@@ -9,7 +9,7 @@ $search_list = [];  //検索結果
 
         //おすすめ品が検索されたら
         if($_GET["recommend"] !== ""){
-            $sql = $sql .'AND recommend.body LIKE "%":recommend"%"';
+            $sql = $sql .'AND recommend.recommendBody LIKE "%":recommend"%"';
         }
         // 絞り込み条件が検索されたら
         if($_GET["condition"] !== ""){
@@ -46,7 +46,7 @@ $search_list = [];  //検索結果
 
                 if ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {    //一致するデータがあれば
                     foreach($row as $rowKey => $rowValue){
-                        $search_list[$key]['recommend'] = $row[$rowKey]['body'] ." " .$search_list[$key]['recommend'];  //おすすめ情報の追記
+                        $search_list[$key]['recommend'] = $row[$rowKey]['recommendBody'] ." " .$search_list[$key]['recommend'];  //おすすめ情報の追記
                     }
                 }
             }

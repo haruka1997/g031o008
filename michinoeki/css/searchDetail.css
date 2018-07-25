@@ -9,7 +9,6 @@
     color: #9b9a9a;
 }
 
-
 /* 詳細情報枠 */
 .detail-content{
     display: flex;
@@ -31,7 +30,7 @@
     position: relative;
     flex-flow: column nowrap;
     width: calc(100% - 435px);
-    padding: 15px;
+    padding: 5px 0px 0px 30px;
 }
 
 /* 駅画像 */
@@ -45,7 +44,12 @@
 .station-rate{
     position: relative;
     width: 300px;
-    height: 200px;
+    height: auto;
+}
+
+.station-rate label{
+    font-size: 16px;
+    margin-left: 8px;
 }
 
 /* 駅名 */
@@ -57,15 +61,23 @@
 /* 情報タイトル */
 #info-title{
     font-size: 18px;
-    margin: 20px;
+    margin: 20px 0px 10px 0px;
+    color: #517D99;
+    font-weight: bold;
 }
 
 #info-title i{
     margin: 10px 0px 10px 20px;
     cursor: pointer;
+    color: #9b9a9a;
 }
 
 /* 情報内容 */
 #info-body{
-    margin: 10px 0px 10px 30px
+    margin: 0px 0px 10px 30px;
+}
+
+#info-body p{
+    font-size: 17px;
+    line-height: 15px;
 }
