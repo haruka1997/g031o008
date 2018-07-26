@@ -56,19 +56,17 @@ $rate_info = [];    //評価情報
         }
 
         // 評価の取得
-        $sql = 'SELECT * FROM stationRate WHERE stationRate.stationId = :stationId;';
+        $sql = 'SELECT TRUNCATE(AVG(directMarket), 0) AS directMarket, TRUNCATE(AVG(cafeteria), 0) AS cafeteria, TRUNCATE(AVG(carNight),0) AS carNight FROM stationRate WHERE stationRate.stationId = :stationId;';
         $stmt = $dbh->prepare($sql);
         $stmt->bindParam(':stationId', $_GET['stationId'], PDO::PARAM_STR); //駅ID
         $stmt->execute();   //実行
 
-        if ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {   //一致するデータがあれば
-            foreach($row as $key => $value){
-                $rate_info['directMarket'] = $row[$key]['directMarket'];
-                $rate_info['cafeteria'] = $row[$key]['cafeteria'];
-                $rate_info['carNight'] = $row[$key]['carNight'];
-            }
-        }
 
+        if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {   //一致するデータがあれば
+                $rate_info['directMarket'] = $row['directMarket'];
+                $rate_info['cafeteria'] = $row['cafeteria'];
+                $rate_info['carNight'] = $row['carNight'];
+        }
     } catch (PDOException $e) {
         $errorFlag = true;
         $errorMessage = 'データベースエラー';
