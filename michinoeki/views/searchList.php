@@ -46,8 +46,10 @@ $search_list = [];  //検索結果
 
                 if ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)) {    //一致するデータがあれば
                     foreach($row as $rowKey => $rowValue){
-                        $search_list[$key]['recommend'] = $row[$rowKey]['recommendBody'] ." " .$search_list[$key]['recommend'];  //おすすめ情報の追記
+                        $search_list[$key]['recommend'] = $row[$rowKey]['recommendBody'] .", " .$search_list[$key]['recommend'];  //おすすめ情報の追記
                     }
+                    // 末尾のカンマ削除
+                    $search_list[$key]['recommend'] = rtrim($search_list[$key]['recommend'], ", ");
                 }
             }
         }
