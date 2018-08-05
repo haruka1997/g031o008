@@ -81,3 +81,24 @@
     font-size: 17px;
     line-height: 15px;
 }
+
+/* 詳細情報編集モーダル */
+.edit-items{
+    padding: 1em 0 0 1em;
+}
+.edit-item,
+.add-item{
+    margin: 5px;
+}
+.edit-item input,
+.add-item input {
+    vertical-align: top;
+}
+.modal-footer{
+    display: flex;
+    float: right;
+    margin: 10px;
+}
+.modal-footer button{
+    margin: 10px;
+}
