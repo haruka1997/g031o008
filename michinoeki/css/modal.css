@@ -171,3 +171,10 @@ Github: http://github.com/jorgechavz
     opacity: 1;
   }
 }
+
+.modal-header{
+  border-bottom: 1px solid #d1d0d0;
+  height: 25px;
+  text-align: center;
+  font-size: 18px;
+}

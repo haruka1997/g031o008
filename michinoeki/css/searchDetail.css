@@ -88,7 +88,7 @@
 }
 .edit-item,
 .add-item{
-    margin: 5px;
+    margin: 20px 0px 0px 0px;
 }
 .edit-item input,
 .add-item input {
@@ -101,4 +101,7 @@
 }
 .modal-footer button{
     margin: 10px;
+}
+.edit-rate-input{
+    margin-left: 20px;
 }

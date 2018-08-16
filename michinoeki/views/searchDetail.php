@@ -280,6 +280,32 @@ $edit_buzz_info = [];   //口コミ情報編集
         }
     }
 
+    /**
+     * 評価の編集
+     */
+    if (isset($_POST["rate-regist"])) {
+        try {
+            $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+            // 概要情報の取得
+            $sql = 'INSERT INTO stationRate(stationId, directMarket, cafeteria, carNight) VALUES (:stationId, :directMarket, :cafeteria, :carNight)';
+            $stmt = $dbh->prepare($sql);
+            $stmt->bindParam(':stationId', $_GET['stationId'], PDO::PARAM_STR); //駅ID
+            $stmt->bindParam(':directMarket', $_POST['directMarket'], PDO::PARAM_STR); //産直の充実さ
+            $stmt->bindParam(':cafeteria', $_POST['cafeteria'], PDO::PARAM_STR); // 食堂の美味しさ
+            $stmt->bindParam(':carNight', $_POST['carNight'], PDO::PARAM_STR); //車中泊のしやすさ
+
+            $flag = $stmt->execute();
+            print_r($flag);
+            if($flag){  //更新に成功
+                header("Location: " . 'searchDetail.php?stationId=' .$_GET['stationId']);
+            }
+        } catch (PDOException $e) {
+            $errorFlag = true;
+            $errorMessage = 'データベースエラー';
+        }
+    }
+
+
 ?>
 <!doctype html>
 <html>
@@ -331,7 +357,7 @@ $edit_buzz_info = [];   //口コミ情報編集
                             </div>
                             <!-- 評価 -->
                             <div class="station-rate">
-                                <p id="info-title">評価  <label for="edit-basic-modal-trigger"><i class="fas fa-pencil-alt"></i></label></p>
+                                <p id="info-title">評価  <label for="edit-rate-modal-trigger"><i class="fas fa-pencil-alt"></i></label></p>
                                 <label>産直の充実度</label>
                                 <p><img border="0" src="./../img/rate<?= $rate_info['directMarket'] ?>.png" width="200"></p>
                                 <label>食堂の美味しさ</label>
@@ -486,6 +512,42 @@ $edit_buzz_info = [];   //口コミ情報編集
                                         <!-- 削除ボタン -->
                                         <div class="delete-button">
                                             <button type="submit" name="buzz-delete" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">削除</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 評価情報編集モーダル -->
+                    <div class="modal">
+                        <input id="edit-rate-modal-trigger" class="checkbox" type="checkbox">
+                        <div class="modal-overlay">
+                            <label for="edit-rate-modal-trigger" class="o-close"></label>
+                            <div class="modal-wrap" style="width: 45%;">
+                                <label for="edit-rate-modal-trigger" class="close">×</label>
+                                <!-- モーダルヘッダ -->
+                                <div class="modal-header">
+                                    口コミ情報編集
+                                </div>
+                                <form name="regist" method="post">
+                                    <div class="edit-items" style="text-align:center;">
+                                        <div class="edit-item">
+                                            <label>産直の充実度</label>
+                                            <input class="edit-rate-input" type="number" name="directMarket" max="5" min="0" placeholder="0"/>
+                                        </div>
+                                        <div class="edit-item">
+                                            <label>食堂の美味しさ</label>
+                                            <input class="edit-rate-input" type="number" name="cafeteria" max="5" min="0" placeholder="0"/>
+                                        </div>
+                                        <div class="edit-item">
+                                            <label>車中泊のしやすさ</label>
+                                            <input class="edit-rate-input" type="number" name="carNight" max="5" min="0" placeholder="0"/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!-- 編集ボタン -->
+                                        <div class="regist-button">
+                                            <button type="submit" name="rate-regist" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">完了</label>
                                         </div>
                                     </div>
                                 </form>
