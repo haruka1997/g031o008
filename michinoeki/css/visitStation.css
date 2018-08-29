@@ -1,0 +1,186 @@
+.visit-station{
+    margin: 20px;
+    display: flex;
+}
+.edit-form{
+    border: solid 1px #c3c3c3;
+    padding: 10px 0px 20px 0px;
+}
+.edit-form-header{
+    border-bottom: 1px solid #c3c3c3;
+    padding: 5px;
+}
+.edit-form-header label{
+    margin: 0px 0px 10px 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.edit-form-content{
+    padding: 10px 20px 10px 20px;
+}
+.edit-form-item{
+    margin: 15px 0px 0px 10px
+}
+.edit-form-item p{
+    margin: 10px 0px 10px 0px;
+}
+.edit-form-item input{
+    width: 95%;
+    height: 20px;
+    font-size: 15px;
+}
+.edit-form-item textarea{
+    width: 95%;
+    font-size: 15px;
+}
+.regist-button{
+    text-align: center;
+}
+
+/* 地図アイコン */
+.map{
+    position: relative;
+}
+.map .fas{
+    position: absolute;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    margin:0;/*余計な隙間を除く*/
+    padding:0;/*余計な隙間を除く*/
+    color: white;/*アイコン色*/
+    font-size: 25px;/*サイズ*/
+    cursor: pointer;
+}
+.map #one{
+    top: 55%;
+    left: 42%;
+}
+.map #two{
+    top: 83%;
+    left: 60%;
+}
+.map #three{
+    top: 43%;
+    left: 46%;
+}
+.map #four{
+    top: 9%;
+    left: 61%;
+}
+.map #five{
+    top: 68%;
+    left: 50%;
+}
+.map #six{
+    top: 37%;
+    left: 71%;
+}
+.map #seven{
+    top: 22%;
+    left: 68%;
+}
+.map #eight{
+    top: 44%;
+    left: 75%;
+}
+.map #nine{
+    top: 32%;
+    left: 75%;
+}
+.map #ten{
+    top: 78%;
+    left: 41%;
+}
+.map #eleven{
+    top: 28%;
+    left: 41%;
+}
+.map #twelve{
+    top: 18%;
+    left: 56%;
+}
+.map #thirteen{
+    top: 63%;
+    left: 50%;
+}
+.map #fourteen{
+    top: 50%;
+    left: 45%;
+}
+.map #fifteen{
+    top: 55%;
+    left: 52%;
+}
+.map #sixteen{
+    top: 57%;
+    left: 74%;
+}
+.map #seventeen{
+    top: 57%;
+    left: 58%;
+}
+.map #eighteen{
+    top: 75%;
+    left: 69%;
+}
+.map #nineteen{
+    top: 62%;
+    left: 31%;
+}
+.map #twenty{
+    top: 25%;
+    left: 50%;
+}
+.map #twenty-one{
+    top: 26%;
+    left: 46%;
+}
+.map #twenty-two{
+    top: 38%;
+    left: 32%;
+}
+.map #twenty-three{
+    top: 61%;
+    left: 44%;
+}
+.map #twenty-four{
+    top: 87%;
+    left: 35%;
+}
+.map #twenty-five{
+    top: 13%;
+    left: 49%;
+}
+.map #twenty-six{
+    top: 89%;
+    left: 49%;
+}
+.map #twenty-seven{
+    top: 43%;
+    left: 61%;
+}
+.map #twenty-eight{
+    top: 51%;
+    left: 76%;
+}
+.map #twenty-nine{
+    top: 32%;
+    left: 57%;
+}
+.map #thirty{
+    top: 17%;
+    left: 65%;
+}
+.map #thirty-one{
+    top: 66%;
+    left: 70%;
+}
+.map #thirty-two{
+    top: 82%;
+    left: 38%;
+}
+.map #thirty-three{
+    top: 85%;
+    left: 54%;
+}

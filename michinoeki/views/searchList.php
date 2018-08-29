@@ -3,7 +3,7 @@ $search_list = [];  //検索結果
 
     // エラー処理
     try {
-        $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+        $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
         $sql =  'SELECT * FROM stationOverview AS overview LEFT OUTER JOIN stationRecommend AS recommend ON overview.stationId = recommend.stationId LEFT OUTER JOIN stationRate AS rate ON overview.stationId = rate.stationId
         WHERE overview.stationName LIKE "%":stationName"%" AND overview.stationPlace LIKE "%":stationPlace"%"';
 

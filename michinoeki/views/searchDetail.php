@@ -11,7 +11,7 @@ $edit_buzz_info = [];   //口コミ情報編集
 
     // 詳細情報の取得
     try {
-        $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+        $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
         // 概要情報の取得
         $sql = 'SELECT * FROM stationOverview WHERE stationOverview.stationId = :stationId;';
         $stmt = $dbh->prepare($sql);
@@ -87,7 +87,7 @@ $edit_buzz_info = [];   //口コミ情報編集
         if(isset($_POST["edit-basic-key"])){
             foreach($_POST["edit-basic-key"] as $key => $value){
                 try {
-                    $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+                    $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
                     // 概要情報の取得
                     $sql = 'UPDATE stationBasic SET userId = :userId, basicBody = :basicBody WHERE basicId = :basicId;';
                     $stmt = $dbh->prepare($sql);
@@ -107,7 +107,7 @@ $edit_buzz_info = [];   //口コミ情報編集
         }
         if(isset($_POST["add-basic-key"])){
             try {
-                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
                 // 概要情報の取得
                 $sql = 'INSERT INTO stationBasic(stationId, userId, basicBody) VALUES(:stationId, :userId, :basicBody)' ;
                 $stmt = $dbh->prepare($sql);
@@ -129,7 +129,7 @@ $edit_buzz_info = [];   //口コミ情報編集
     if (isset($_POST["basic-delete"])) {
         foreach($_POST["edit-basic-key"] as $key => $value){
             try {
-                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
                 // 概要情報の取得
                 $sql = 'DELETE FROM stationBasic WHERE  basicId = :basicId;';
                 $stmt = $dbh->prepare($sql);
@@ -153,7 +153,7 @@ $edit_buzz_info = [];   //口コミ情報編集
     if (isset($_POST["recommend-regist"])) {
         foreach($_POST["edit-recommend-key"] as $key => $value){
             try {
-                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
                 // 概要情報の取得
                 $sql = 'UPDATE stationRecommend SET userId = :userId, recommendBody = :recommendBody WHERE recommendId = :recommendId;';
                 $stmt = $dbh->prepare($sql);
@@ -174,7 +174,7 @@ $edit_buzz_info = [];   //口コミ情報編集
         }
         if(isset($_POST["add-recommend-key"])){
             try {
-                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
                 // 概要情報の取得
                 $sql = 'INSERT INTO stationRecommend(stationId, userId, recommendBody) VALUES(:stationId, :userId, :recommendBody)' ;
                 $stmt = $dbh->prepare($sql);
@@ -196,7 +196,7 @@ $edit_buzz_info = [];   //口コミ情報編集
     if (isset($_POST["recommend-delete"])) {
         foreach($_POST["edit-recommend-key"] as $key => $value){
             try {
-                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
                 // 概要情報の取得
                 $sql = 'DELETE FROM stationRecommend WHERE  recommendId = :recommendId;';
                 $stmt = $dbh->prepare($sql);
@@ -220,7 +220,7 @@ $edit_buzz_info = [];   //口コミ情報編集
     if (isset($_POST["buzz-regist"])) {
         foreach($_POST["edit-buzz-key"] as $key => $value){
             try {
-                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
                 // 概要情報の取得
                 $sql = 'UPDATE stationBuzz SET userId = :userId, buzzBody = :buzzBody WHERE buzzId = :buzzId;';
                 $stmt = $dbh->prepare($sql);
@@ -240,7 +240,7 @@ $edit_buzz_info = [];   //口コミ情報編集
         }
         if(isset($_POST["add-buzz-key"])){
             try {
-                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
                 // 概要情報の取得
                 $sql = 'INSERT INTO stationBuzz(stationId, userId, buzzBody) VALUES(:stationId, :userId, :buzzBody)' ;
                 $stmt = $dbh->prepare($sql);
@@ -262,7 +262,7 @@ $edit_buzz_info = [];   //口コミ情報編集
     if (isset($_POST["buzz-delete"])) {
         foreach($_POST["edit-buzz-key"] as $key => $value){
             try {
-                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+                $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
                 // 概要情報の取得
                 $sql = 'DELETE FROM stationBuzz WHERE  buzzId = :buzzId;';
                 $stmt = $dbh->prepare($sql);
@@ -285,7 +285,7 @@ $edit_buzz_info = [];   //口コミ情報編集
      */
     if (isset($_POST["rate-regist"])) {
         try {
-            $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008; charset=utf8;', 'g031o008', 'g031o008');
+            $dbh = new PDO('mysql:host=153.126.145.118; dbname=g031o008', 'g031o008', 'g031o008');
             // 概要情報の取得
             $sql = 'INSERT INTO stationRate(stationId, directMarket, cafeteria, carNight) VALUES (:stationId, :directMarket, :cafeteria, :carNight)';
             $stmt = $dbh->prepare($sql);
